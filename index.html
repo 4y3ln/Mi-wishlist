@@ -1,3 +1,4 @@
+|
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -86,7 +87,8 @@
 
     body.view-only .profile-edit-button,
     body.view-only .share-button,
-    body.view-only .editor-panel {
+    body.view-only .editor-panel,
+    body.view-only .upload {
       display: none;
     }
 
@@ -181,17 +183,16 @@
       padding: 28px 32px;
       position: relative;
       overflow: hidden;
-      border: 1px solid rgba(170, 161, 232, .72);
-      border-radius: 24px;
-      background: rgba(255, 253, 248, .9);
-      box-shadow: var(--shadow);
+      border: 5px solid #24191d;
+      border-radius: 30px;
+      background: #dbe3f0;
+      box-shadow: 7px 7px 0 #24191d;
     }
 
     .id-card::before {
       position: absolute;
       inset: 0 0 auto;
-      height: 8px;
-      background: repeating-linear-gradient(135deg, var(--coral) 0 13px, var(--yellow) 13px 26px, var(--lilac) 26px 39px);
+      height: 0;
       content: "";
     }
 
@@ -204,10 +205,10 @@
       margin: 0 auto 11px;
       overflow: hidden;
       place-items: center;
-      border: 3px solid var(--ink);
-      border-radius: 11px;
-      background: var(--lavender);
-      color: var(--ink);
+      border: 5px solid #24191d;
+      border-radius: 14px;
+      background: #f4f0dc;
+      color: #24191d;
       font-family: "Smile Moon", cursive;
       font-size: 4.2rem;
       font-weight: 700;
@@ -242,7 +243,7 @@
 
     .label {
       margin: 0 0 5px;
-      color: var(--muted);
+      color: #24191d;
       font-size: .7rem;
       font-weight: 800;
       letter-spacing: .14em;
@@ -254,13 +255,14 @@
       font-family: "Smile Moon", cursive;
       font-size: clamp(2rem, 4vw, 3rem);
       font-weight: 500;
+      color: #24191d;
     }
 
     .details {
       display: grid;
       grid-template-columns: repeat(2, minmax(100px, 1fr));
       gap: 12px 25px;
-      border-top: 1px solid var(--line);
+      border-top: 2px solid rgba(36, 25, 29, .45);
       padding-top: 14px;
     }
 
@@ -268,13 +270,14 @@
       display: block;
       margin-top: 3px;
       font-size: .98rem;
+      color: #24191d;
     }
 
     .card-note {
       align-self: end;
       padding-left: 22px;
-      border-left: 1px solid var(--line);
-      color: var(--muted);
+      border-left: 2px solid rgba(36, 25, 29, .45);
+      color: #24191d;
       font-family: "Smile Moon", cursive;
       font-size: 1.05rem;
       font-style: italic;
@@ -462,19 +465,19 @@
       max-height: min(620px, 90vh);
       overflow: auto;
       position: relative;
-      padding: 31px 33px 33px;
-      border: 1px solid rgba(170, 161, 232, .72);
-      border-radius: 18px;
-      background: var(--paper);
-      box-shadow: var(--shadow);
+      padding: 34px 33px 33px;
+      border: 5px solid #5B475D;
+      border-radius: 30px;
+      background: #F6F2F7;
+      color: #24191d;
+      box-shadow: 7px 7px 0 #24191d;
       animation: modal-in .2s ease-out;
     }
 
     .modal-content::before {
       position: absolute;
       inset: 0 0 auto;
-      height: 7px;
-      background: repeating-linear-gradient(135deg, var(--coral) 0 13px, var(--yellow) 13px 26px, var(--lilac) 26px 39px);
+      height: 0;
       content: "";
     }
 
@@ -482,18 +485,39 @@
       position: absolute;
       top: 17px;
       right: 19px;
-      width: 32px;
-      height: 32px;
+      width: 36px;
+      height: 36px;
       border: 0;
       border-radius: 50%;
-      background: var(--lavender);
-      color: var(--ink);
+      background: #9EB3D1;
+      color: #24191d;
       cursor: pointer;
       font-size: 1.3rem;
       line-height: 1;
     }
 
-    .modal-close:hover { background: var(--yellow); }
+    .modal-close:hover { background: #9EB3D1; }
+
+    .modal-content .panel-heading {
+      border-bottom-color: #E8DEF1;
+    }
+
+    .modal-content .counter { color: #4b3a43; }
+
+    .modal-content h2,
+    .modal-content strong,
+    .modal-content .items li,
+    .modal-content .ranking-editor-row span {
+      color: #4b3a43;
+    }
+
+    .modal-content .editor-actions button:first-child,
+    .modal-content .list-editor-actions button,
+    .modal-content .ranking-controls button {
+      border-color: #E8DEF1;
+      background: #9A7FB3;
+      color: #24191d;
+    }
 
     .list-modal-content .panel-heading { padding-top: 32px; }
 
@@ -506,9 +530,9 @@
       top: 17px;
       left: 20px;
       padding: 8px 11px;
-      border: 1px solid var(--ink);
+      border: 1px solid #E8DEF1;
       border-radius: 8px;
-      background: var(--lavender);
+      background: #9A7FB3;
       color: var(--ink);
       cursor: pointer;
       font: inherit;
@@ -517,20 +541,30 @@
     }
 
     .modal .items { grid-template-columns: 1fr; margin-top: 21px; }
+    .modal .items li::before { background: #9A7FB3; }
+    .modal .item-content { display: flex; flex-direction: column; align-items: flex-start; gap: 3px; }
+    .modal .item-content > span:first-child { font-size: 1.08rem; }
+    .modal .item-reference { display: block; width: fit-content; color: #5B475D; font-size: .95rem; font-weight: 800; }
+    .modal .item-actions { display: flex; flex-wrap: wrap; gap: 7px; align-items: center; margin-top: 4px; }
+    .modal .reserve-button { padding: 6px 10px; border: 1px solid #E8DEF1; border-radius: 7px; background: #9A7FB3; color: #4b3a43; cursor: pointer; font: inherit; font-size: .78rem; font-weight: 800; }
+    .modal .reserved-by { color: #5B475D; font-size: .8rem; font-weight: 800; }
+    .name-gate-modal .modal-content { width: min(440px, 100%); }
+    .name-gate-form { display: grid; gap: 10px; margin-top: 18px; }
+    .name-gate-form input { width: 100%; padding: 10px; border: 2px solid #E8DEF1; border-radius: 8px; background: var(--paper); color: var(--ink); font: inherit; }
 
     .list-editor { display: grid; gap: 11px; margin-top: 18px; }
     .list-editor-row { display: grid; grid-template-columns: 1fr auto; gap: 8px; align-items: center; }
-    .list-editor-row input[type="text"], .list-editor-row input[type="url"] { min-width: 0; padding: 10px; border: 1px solid var(--line); border-radius: 8px; font: inherit; }
+    .list-editor-row input[type="text"], .list-editor-row input[type="url"] { min-width: 0; padding: 10px; border: 2px solid #E8DEF1; border-radius: 8px; background: var(--paper); color: var(--ink); font: inherit; }
     .list-editor-row input[type="text"], .list-editor-row input[type="url"], .list-editor-row input[type="file"], .list-editor-row .list-item-image { grid-column: 1; }
     .list-editor-row input[type="file"] { width: 100%; font-size: .72rem; }
-    .list-editor-row button { padding: 9px 11px; border: 1px solid var(--ink); border-radius: 8px; background: var(--lavender); color: var(--ink); cursor: pointer; font: inherit; font-weight: 800; }
+    .list-editor-row button { padding: 9px 11px; border: 2px solid #E8DEF1; border-radius: 8px; background: #9A7FB3; color: #24191d; cursor: pointer; font: inherit; font-weight: 800; }
     .list-editor-row button { grid-column: 2; grid-row: 1 / -1; align-self: start; }
     .list-item-image { width: 64px; height: 64px; border-radius: 8px; object-fit: cover; }
     .list-editor-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
-    .list-editor-actions button { padding: 10px 13px; border: 1px solid var(--ink); border-radius: 8px; background: var(--ink); color: white; cursor: pointer; font: inherit; font-weight: 800; }
-    .list-editor-actions button.secondary { background: var(--lavender); color: var(--ink); }
+    .list-editor-actions button { padding: 10px 13px; border: 1px solid #E8DEF1; border-radius: 8px; background: #9A7FB3; color: #24191d; cursor: pointer; font: inherit; font-weight: 800; }
+    .list-editor-actions button.secondary { background: var(--coral); color: var(--ink); }
     .items li { flex-wrap: wrap; }
-    .items li img { width: 38px; height: 38px; border-radius: 8px; object-fit: cover; }
+    .items li img { width: 72px; height: 72px; border-radius: 8px; object-fit: cover; }
 
     .ranking-image-button {
       padding: 0;
@@ -539,7 +573,10 @@
       cursor: pointer;
     }
 
-    .ranking-image-button img { width: 64px; height: 64px; }
+    .ranking-image-button img { width: 104px; height: 104px; }
+
+    .image-preview-modal .modal-content { width: min(760px, 100%); text-align: center; }
+    .image-preview-modal img { display: block; width: 100%; max-height: 70vh; border-radius: 12px; object-fit: contain; }
 
     .ranking-controls { display: flex; gap: 5px; }
     .ranking-controls button { padding: 6px 9px; font-size: .72rem; }
@@ -550,7 +587,7 @@
 
     .profile-form { display: grid; gap: 12px; margin-top: 20px; }
     .profile-form label { color: var(--muted); font-size: .72rem; font-weight: 800; text-transform: uppercase; }
-    .profile-form input { width: 100%; margin-top: 5px; padding: 10px; border: 1px solid var(--line); border-radius: 8px; font: inherit; }
+    .profile-form input { width: 100%; margin-top: 5px; padding: 10px; border: 2px solid #E8DEF1; border-radius: 8px; background: #f4f0dc; color: #24191d; font: inherit; }
 
     .guide-modal p { color: var(--muted); line-height: 1.55; }
 
@@ -569,7 +606,7 @@
       padding: 10px;
       border: 0;
       border-radius: 12px;
-      background: rgba(232, 228, 255, .52);
+      background: rgba(255, 250, 245, .78);
       cursor: pointer;
     }
 
@@ -587,6 +624,22 @@
     .ranking-editor-row img { width: 58px; height: 58px; border-radius: 8px; object-fit: cover; }
     .ranking-editor-row span { flex: 1; }
 
+    .tier-list { display: grid; gap: 8px; margin-top: 22px; }
+    .tier-row { display: grid; grid-template-columns: 58px 1fr; min-height: 86px; border: 2px solid #5B475D; background: #fff; }
+    .tier-label { display: grid; place-items: center; color: #fff; font-size: 1.35rem; font-weight: 800; }
+    .tier-label-one { background: #9A7FB3; }
+    .tier-label-two { background: #9EB3D1; color: #24191d; }
+    .tier-label-three { background: #A9CFE0; color: #24191d; }
+    .tier-label-four { background: #B7C7A3; color: #24191d; }
+    .tier-label-five { background: #E8A096; color: #24191d; }
+    .tier-dropzone { display: flex; flex-wrap: wrap; align-content: flex-start; gap: 7px; padding: 7px; background: #333; }
+    .tier-dropzone.is-over { background: #5B475D; }
+    .tier-item, .tier-source-item { width: 72px; height: 72px; padding: 0; border: 2px solid #E8DEF1; border-radius: 6px; background: #f6f2f7; cursor: grab; overflow: hidden; }
+    .tier-item img, .tier-source-item img { display: block; width: 100%; height: 100%; object-fit: cover; }
+    .tier-sources { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; padding: 12px; border: 2px dashed #5B475D; background: #E8DEF1; }
+    .tier-sources:empty { display: none; }
+    .tier-sources-title { width: 100%; color: #4b3a43; font-size: .8rem; font-weight: 800; }
+
     .link-row {
       display: grid;
       grid-template-columns: 1fr auto;
@@ -596,10 +649,10 @@
 
     .link-row input, .editor-form input, .editor-form textarea {
       width: 100%;
-      border: 1px solid var(--line);
+      border: 2px solid #E8DEF1;
       border-radius: 8px;
-      background: white;
-      color: var(--ink);
+      background: #f4f0dc;
+      color: #24191d;
       font: inherit;
     }
 
@@ -607,9 +660,9 @@
 
     .small-button, .editor-actions button {
       padding: 10px 13px;
-      border: 1px solid var(--ink);
+      border: 1px solid #E8DEF1;
       border-radius: 8px;
-      background: var(--lavender);
+      background: #9A7FB3;
       color: var(--ink);
       cursor: pointer;
       font: inherit;
@@ -636,6 +689,53 @@
     .editor-actions { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 7px; }
     .editor-actions button:first-child { background: var(--ink); color: white; }
 
+    .modal-content {
+      border-color: #5B475D;
+      background: #F6F2F7;
+      color: #4b3a43;
+      box-shadow: 7px 7px 0 #5B475D;
+    }
+
+    .modal-content .panel-heading,
+    .modal-content .link-row input,
+    .modal-content .profile-form input,
+    .modal-content .list-editor-row input[type="text"],
+    .modal-content .list-editor-row input[type="url"],
+    .modal-content .list-editor-row button,
+    .modal-content .list-editor-actions button,
+    .modal-content .small-button,
+    .modal-content .editor-actions button,
+    .modal-content .ranking-controls button {
+      border-color: #E8DEF1;
+    }
+
+    .modal-content .modal-close {
+      border: 0;
+      background: #9EB3D1;
+    }
+
+    .modal-content .edit-list-button,
+    .modal-content .small-button,
+    .modal-content .editor-actions button,
+    .modal-content .list-editor-row button,
+    .modal-content .list-editor-actions button,
+    .modal-content .ranking-controls button {
+      background: #9A7FB3;
+      color: #4b3a43;
+    }
+
+    .modal-content .list-editor-actions button.secondary {
+      background: #9A7FB3;
+    }
+
+    .modal-content .ranking-gift {
+      background: #E8DEF1;
+    }
+
+    .modal-content .items li::before {
+      background: #9A7FB3;
+    }
+
     @keyframes modal-in {
       from { opacity: 0; transform: translateY(12px) scale(.98); }
       to { opacity: 1; transform: translateY(0) scale(1); }
@@ -645,7 +745,7 @@
       .page { width: min(100% - 28px, 560px); padding-top: 38px; }
       .id-card { grid-template-columns: 125px 1fr; gap: 19px; padding: 25px 21px; }
       .photo { width: 115px; height: 142px; font-size: 3rem; }
-      .card-note { grid-column: 1 / -1; border-left: 0; border-top: 1px solid var(--line); padding: 16px 0 0; }
+      .card-note { grid-column: 1 / -1; border-left: 0; border-top: 2px solid rgba(36, 25, 29, .45); padding: 16px 0 0; }
       .tabs { display: grid; grid-template-columns: repeat(2, 1fr); }
       .tab { text-align: center; }
     }
@@ -748,6 +848,25 @@
       </div>
     </div>
 
+    <div class="modal image-preview-modal" id="imagePreviewModal" role="dialog" aria-modal="true" aria-labelledby="imagePreviewTitle" hidden>
+      <div class="modal-content">
+        <button class="modal-close" id="closeImagePreviewModal" type="button" aria-label="Cerrar ventana">&times;</button>
+        <h2 id="imagePreviewTitle">Imagen</h2>
+        <img id="imagePreview" alt="">
+      </div>
+    </div>
+
+    <div class="modal name-gate-modal" id="nameGateModal" role="dialog" aria-modal="true" aria-labelledby="nameGateTitle" hidden>
+      <div class="modal-content">
+        <h2 id="nameGateTitle">¿Cuál es tu nombre?</h2>
+        <p>Escríbelo para poder apartar un regalo.</p>
+        <form class="name-gate-form" id="nameGateForm">
+          <input id="viewerName" name="viewerName" required maxlength="50" autocomplete="name" placeholder="Tu nombre">
+          <button class="small-button" type="submit">Continuar</button>
+        </form>
+      </div>
+    </div>
+
     <div class="modal guide-modal" id="guideModal" role="dialog" aria-modal="true" aria-labelledby="guideModalTitle" hidden>
       <div class="modal-content">
         <button class="modal-close" id="closeGuideModal" type="button" aria-label="Cerrar ventana">&times;</button>
@@ -787,6 +906,63 @@
     </div>
   </main>
 
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+    import { getFirestore, doc, getDoc, onSnapshot, runTransaction, setDoc } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyAtV3NTAVlKOq_5KIJV9jEgp4gFyhV57Xk",
+      authDomain: "wishlist-aef0f.firebaseapp.com",
+      projectId: "wishlist-aef0f",
+      storageBucket: "wishlist-aef0f.firebasestorage.app",
+      messagingSenderId: "33535489851",
+      appId: "1:33535489851:web:5d45915130f8a5fe22e91e",
+      measurementId: "G-S3T1N6FEXN"
+    };
+
+    try {
+      const app = initializeApp(firebaseConfig);
+      const database = getFirestore(app);
+      window.sharedReservations = {
+        listen(guideId, callback) {
+          return onSnapshot(doc(database, "wishlistReservations", guideId), snapshot => {
+            callback(snapshot.exists() ? snapshot.data() : {});
+          }, () => callback({}));
+        },
+        async toggle(guideId, itemKey, name) {
+          const reservationRef = doc(database, "wishlistReservations", guideId);
+          await runTransaction(database, async transaction => {
+            const snapshot = await transaction.get(reservationRef);
+            const reservations = snapshot.exists() ? snapshot.data() : {};
+            if (reservations[itemKey] && reservations[itemKey] !== name) return;
+            if (reservations[itemKey] === name) {
+              delete reservations[itemKey];
+            } else {
+              reservations[itemKey] = name;
+            }
+            transaction.set(reservationRef, reservations);
+          });
+        }
+      };
+      window.sharedGuides = {
+        async load(guideId) {
+          const snapshot = await getDoc(doc(database, "wishlistGuides", guideId));
+          return snapshot.exists() ? snapshot.data() : null;
+        },
+        async save(state) {
+          await setDoc(doc(database, "wishlistGuides", state.guideId), state);
+        }
+      };
+      window.dispatchEvent(new Event("shared-reservations-ready"));
+      window.dispatchEvent(new Event("shared-guides-ready"));
+    } catch {
+      window.sharedReservations = null;
+      window.sharedGuides = null;
+      window.dispatchEvent(new Event("shared-reservations-ready"));
+      window.dispatchEvent(new Event("shared-guides-ready"));
+    }
+  </script>
+
   <script>
     let content = {
       "not-want": {
@@ -817,9 +993,11 @@
       want: content.want.items.join("\n"),
       notWant: content["not-want"].items.join("\n"),
       hate: content.hate.items.join("\n"),
+      profilePhoto: "",
       photos: { likes: [], want: [], "not-want": [], hate: [] },
       links: { likes: [], want: [], "not-want": [], hate: [] },
-      ranking: [0, 1, 2, 3]
+      ranking: [0, 1, 2, 3],
+      rankingTiers: { "1": [], "2": [], "3": [], "4": [], "5": [] }
     };
 
     const blankState = {
@@ -835,6 +1013,8 @@
       hate: ""
     };
 
+    const storageKey = "wishlist-guide-state";
+
     const tabs = document.querySelectorAll(".tab");
     const modal = document.querySelector("#preferencesModal");
     const modalTitle = document.querySelector("#modalTitle");
@@ -844,6 +1024,12 @@
     const editListButton = document.querySelector("#editListButton");
     const giftNameModal = document.querySelector("#giftNameModal");
     const giftNameTitle = document.querySelector("#giftNameTitle");
+    const imagePreviewModal = document.querySelector("#imagePreviewModal");
+    const imagePreview = document.querySelector("#imagePreview");
+    const imagePreviewTitle = document.querySelector("#imagePreviewTitle");
+    const nameGateModal = document.querySelector("#nameGateModal");
+    const nameGateForm = document.querySelector("#nameGateForm");
+    const viewerNameInput = document.querySelector("#viewerName");
     const closeModal = document.querySelector("#closeModal");
     const guideModal = document.querySelector("#guideModal");
     const editorPanel = document.querySelector("#editorPanel");
@@ -852,6 +1038,127 @@
     const profileForm = document.querySelector("#profileForm");
     let currentState = { ...defaultState };
     let activeListKey = "likes";
+    let sharedReservationState = {};
+    let sharedReservationsLoaded = false;
+    let stopSharedReservations = null;
+    let sharedReservationGuideId = "";
+    let pendingSharedState = null;
+
+    function loadStoredState() {
+      try {
+        const stored = localStorage.getItem(storageKey);
+        return stored ? JSON.parse(stored) : defaultState;
+      } catch {
+        return defaultState;
+      }
+    }
+
+    function persistState(state = currentState) {
+      try {
+        localStorage.setItem(storageKey, JSON.stringify(state));
+      } catch {
+        return;
+      }
+    }
+
+    function saveSharedState(state = currentState) {
+      if (window.sharedGuides) {
+        window.sharedGuides.save(state).then(() => {
+          pendingSharedState = null;
+        }).catch(error => {
+          pendingSharedState = state;
+          console.error("No se pudo sincronizar la guía", error);
+        });
+      } else {
+        pendingSharedState = state;
+      }
+    }
+
+    function flushPendingSharedState() {
+      if (pendingSharedState && window.sharedGuides) saveSharedState(pendingSharedState);
+    }
+
+    function reservationsKey() {
+      return `wishlist-reservations-${currentState.guideId}`;
+    }
+
+    function loadReservations() {
+      if (sharedReservationsLoaded) return sharedReservationState;
+      try {
+        return JSON.parse(localStorage.getItem(reservationsKey())) || {};
+      } catch {
+        return {};
+      }
+    }
+
+    function startSharedReservations() {
+      if (!isViewOnly || !window.sharedReservations) return;
+      if (stopSharedReservations && sharedReservationGuideId !== currentState.guideId) {
+        stopSharedReservations();
+        stopSharedReservations = null;
+        sharedReservationState = {};
+        sharedReservationsLoaded = false;
+      }
+      if (stopSharedReservations) return;
+      sharedReservationGuideId = currentState.guideId;
+      stopSharedReservations = window.sharedReservations.listen(currentState.guideId, reservations => {
+        sharedReservationState = reservations;
+        sharedReservationsLoaded = true;
+        if (!modal.hidden) renderList(activeListKey);
+      });
+    }
+
+    async function loadSharedGuideFromLink() {
+      if (!window.sharedGuides || !(window.location.hash.startsWith("#view=") || window.location.hash.startsWith("#edit="))) return;
+      const encodedValue = window.location.hash.slice(6);
+      const encodedState = decodeState(encodedValue);
+      const guideId = encodedState && encodedState.guideId ? encodedState.guideId : encodedValue;
+      try {
+        const sharedState = await window.sharedGuides.load(guideId);
+        if (!sharedState) return;
+        renderState(sharedState);
+        if (window.location.hash.startsWith("#edit=") && !isPageReload) startEditor();
+        startSharedReservations();
+      } catch {
+        return;
+      }
+    }
+
+    function viewerName() {
+      return localStorage.getItem("wishlist-viewer-name") || "";
+    }
+
+    async function reserveItem(key, index) {
+      const name = viewerName();
+      if (!name) return;
+      const itemKey = `${key}:${index}`;
+      if (window.sharedReservations) {
+        try {
+          await window.sharedReservations.toggle(currentState.guideId, itemKey, name);
+          return;
+        } catch {
+          window.sharedReservations = null;
+        }
+      }
+      const reservations = loadReservations();
+      if (reservations[itemKey] && reservations[itemKey] !== name) return;
+      if (reservations[itemKey] === name) {
+        delete reservations[itemKey];
+      } else {
+        reservations[itemKey] = name;
+      }
+      localStorage.setItem(reservationsKey(), JSON.stringify(reservations));
+      renderList(key);
+    }
+
+    function latestSharedState(sharedState) {
+      try {
+        const stored = JSON.parse(localStorage.getItem(storageKey));
+        return stored && stored.guideId === sharedState.guideId ? stored : sharedState;
+      } catch {
+        return sharedState;
+      }
+    }
 
     function encodeState(state) {
       return btoa(unescape(encodeURIComponent(JSON.stringify(state))));
@@ -872,11 +1179,10 @@
     }
 
     function linksFor(state) {
-      const encoded = encodeState(state);
       const base = window.location.href.split("#")[0];
       return {
-        view: `${base}#view=${encoded}`,
-        edit: `${base}#edit=${encoded}`
+        view: `${base}#view=${state.guideId}`,
+        edit: `${base}#edit=${state.guideId}`
       };
     }
 
@@ -885,10 +1191,13 @@
       currentState.photos = { ...defaultState.photos, ...(state.photos || {}) };
       currentState.links = { ...defaultState.links, ...(state.links || {}) };
       currentState.ranking = Array.isArray(state.ranking) ? state.ranking : [...defaultState.ranking];
+      currentState.rankingTiers = normalizeRankingTiers(state.rankingTiers);
       document.querySelector("#profileName").textContent = currentState.name;
       document.querySelector("#profileDate").textContent = currentState.date;
       document.querySelector("#profileHobby").textContent = currentState.hobby;
       document.querySelector("#profileNote").textContent = `“${currentState.note}”`;
+      document.querySelector("#profileImage").src = currentState.profilePhoto || "";
+      document.querySelector("#photoPreview").classList.toggle("has-image", Boolean(currentState.profilePhoto));
       content.likes.items = currentState.likes.split("\n").filter(Boolean);
       content.want.items = currentState.want.split("\n").filter(Boolean);
       content["not-want"].items = currentState.notWant.split("\n").filter(Boolean);
@@ -913,6 +1222,35 @@
       return Array.isArray(value) ? value.filter(Boolean) : value ? [value] : [];
     }
 
+    function compressImage(file) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.addEventListener("load", () => {
+          const image = new Image();
+          image.addEventListener("load", () => {
+            const scale = Math.min(1, 900 / Math.max(image.naturalWidth, image.naturalHeight));
+            const canvas = document.createElement("canvas");
+            canvas.width = Math.max(1, Math.round(image.naturalWidth * scale));
+            canvas.height = Math.max(1, Math.round(image.naturalHeight * scale));
+            canvas.getContext("2d").drawImage(image, 0, 0, canvas.width, canvas.height);
+            resolve(canvas.toDataURL("image/jpeg", .78));
+          });
+          image.addEventListener("error", reject);
+          image.src = reader.result;
+        });
+        reader.addEventListener("error", reject);
+        reader.readAsDataURL(file);
+      });
+    }
+
+    function showImagePreview(source, name) {
+      imagePreview.src = source;
+      imagePreview.alt = name || "Imagen";
+      imagePreviewTitle.textContent = name || "Imagen";
+      imagePreviewModal.hidden = false;
+      document.querySelector("#closeImagePreviewModal").focus();
+    }
+
     function rankingEntries() {
       const items = content.want.items;
       const order = currentState.ranking.filter(index => index >= 0 && index < items.length);
@@ -926,66 +1264,98 @@
       }));
     }
 
+    function normalizeRankingTiers(value) {
+      const tiers = { "1": [], "2": [], "3": [], "4": [], "5": [] };
+      if (value && typeof value === "object") {
+        const oldTiers = ["S", "A", "B", "C", "D", "E", "F"];
+        Object.keys(tiers).forEach((tier, index) => {
+          const source = Array.isArray(value[tier]) ? value[tier] : value[oldTiers[index]];
+          tiers[tier] = Array.isArray(source) ? source.filter(itemIndex => Number.isInteger(itemIndex)) : [];
+        });
+      }
+      return tiers;
+    }
+
+    function tierEntries() {
+      const items = content.want.items;
+      const tiers = currentState.rankingTiers;
+      const assigned = new Set(Object.values(tiers).flat());
+      const entryFor = index => ({
+        index,
+        name: items[index],
+        source: photoSources((currentState.photos.want || [])[index])[0]
+      });
+      return {
+        tiers: Object.fromEntries(Object.keys(tiers).map(tier => [tier, tiers[tier].filter(index => index < items.length).map(entryFor).filter(entry => entry.source)])),
+        unassigned: items.map((_, index) => entryFor(index)).filter(entry => entry.source && !assigned.has(entry.index))
+      };
+    }
+
+    function tierBoardMarkup(editable) {
+      const entries = tierEntries();
+      const labels = ["1", "2", "3", "4", "5"];
+      const labelClasses = ["one", "two", "three", "four", "five"];
+      const rows = labels.map((tier, index) => `<div class="tier-row"><div class="tier-label tier-label-${labelClasses[index]}">${tier}</div><div class="tier-dropzone" data-tier="${tier}">${entries.tiers[tier].map(entry => `<button class="tier-item" type="button" draggable="${editable}" data-tier-index="${entry.index}" data-photo-source="${escapeHTML(entry.source)}" data-photo-name="${escapeHTML(entry.name)}"><img src="${entry.source}" alt="${escapeHTML(entry.name)}"></button>`).join("")}</div></div>`).join("");
+      const sourceTray = `<div class="tier-sources" data-tier="unassigned"><strong class="tier-sources-title">Imágenes sin clasificar</strong>${entries.unassigned.map(entry => `<button class="tier-source-item" type="button" draggable="${editable}" data-tier-index="${entry.index}" data-photo-source="${escapeHTML(entry.source)}" data-photo-name="${escapeHTML(entry.name)}"><img src="${entry.source}" alt="${escapeHTML(entry.name)}"></button>`).join("")}</div>`;
+      return `<div class="tier-list">${rows}</div>${editable ? sourceTray : ""}`;
+    }
+
+    function attachTierInteractions() {
+      listEditor.querySelectorAll("[data-photo-source]").forEach(button => button.addEventListener("click", () => showImagePreview(button.dataset.photoSource, button.dataset.photoName)));
+      listEditor.querySelectorAll("[draggable='true']").forEach(item => item.addEventListener("dragstart", event => {
+        event.dataTransfer.setData("text/plain", item.dataset.tierIndex);
+      }));
+      listEditor.querySelectorAll("[data-tier]").forEach(zone => {
+        zone.addEventListener("dragover", event => { event.preventDefault(); zone.classList.add("is-over"); });
+        zone.addEventListener("dragleave", () => zone.classList.remove("is-over"));
+        zone.addEventListener("drop", event => {
+          event.preventDefault();
+          zone.classList.remove("is-over");
+          const index = Number(event.dataTransfer.getData("text/plain"));
+          Object.keys(currentState.rankingTiers).forEach(tier => { currentState.rankingTiers[tier] = currentState.rankingTiers[tier].filter(value => value !== index); });
+          if (zone.dataset.tier !== "unassigned") currentState.rankingTiers[zone.dataset.tier].push(index);
+          renderListEditor();
+        });
+      });
+    }
+
     function renderList(key) {
       if (key === "hate") {
-        const entries = rankingEntries();
-        modalItems.innerHTML = `<div class="ranking-board">${entries.length ? entries.map(entry => {
-          const source = entry.photos[0];
-          return source ? `<button class="ranking-gift" type="button" data-gift-index="${entry.index}"><img src="${source}" alt="Ver nombre de ${escapeHTML(entry.name)}"></button>` : "";
-        }).join("") : "<p class=\"ranking-empty\">Añade fotos en «Lo que quiero» para crear tu ranking.</p>"}</div>`;
+        modalItems.innerHTML = tierBoardMarkup(false);
         modalCounter.textContent = "";
-        modalItems.querySelectorAll("[data-gift-index]").forEach(button => button.addEventListener("click", () => {
-          const entry = entries.find(item => item.index === Number(button.dataset.giftIndex));
-          giftNameTitle.textContent = entry ? entry.name : "Regalo";
-          giftNameModal.hidden = false;
-        }));
+        modalItems.querySelectorAll("[data-photo-source]").forEach(button => button.addEventListener("click", () => showImagePreview(button.dataset.photoSource, button.dataset.photoName)));
         return;
       }
       const section = content[key];
       const photos = currentState.photos[key] || [];
       const links = currentState.links[key] || [];
       modalItems.innerHTML = section.items.map((item, index) => {
-        const image = photoSources(photos[index]).map(source => key === "hate"
-          ? `<button class="ranking-image-button" type="button" data-gift-index="${index}"><img src="${source}" alt="Ver nombre de ${escapeHTML(item)}"></button>`
-          : `<img src="${source}" alt="">`).join("");
+        const image = photoSources(photos[index]).map(source => `<button class="ranking-image-button" type="button" data-photo-source="${escapeHTML(source)}" data-photo-name="${escapeHTML(item)}"><img src="${source}" alt="Ver ${escapeHTML(item)}"></button>`).join("");
         const safeLink = /^https?:\/\//i.test(links[index] || "") ? escapeHTML(links[index]) : "";
         const text = escapeHTML(item);
-        return `<li>${image}<span>${safeLink ? `<a href="${safeLink}" target="_blank" rel="noopener noreferrer">${text}</a>` : text}</span></li>`;
+        const reservation = loadReservations()[`${key}:${index}`];
+        const reservationAction = isViewOnly && key === "want" ? `<span class="item-actions"><button class="reserve-button" type="button" data-reserve-key="${key}" data-reserve-index="${index}">${reservation === viewerName() ? "Quitar apartado" : reservation ? "Apartado" : "Apartar"}</button>${reservation ? `<span class="reserved-by">${escapeHTML(reservation)}</span>` : ""}</span>` : "";
+        return `<li>${image}<span class="item-content"><span>${text}</span>${safeLink ? `<a class="item-reference" href="${safeLink}" target="_blank" rel="noopener noreferrer">Ver referencia</a>` : ""}${reservationAction}</span></li>`;
       }).join("");
       modalCounter.textContent = `${section.items.length} preferencias`;
-      if (key === "hate") {
-        modalItems.querySelectorAll("[data-gift-index]").forEach(button => button.addEventListener("click", () => {
-          giftNameTitle.textContent = section.items[Number(button.dataset.giftIndex)] || "Regalo";
-          giftNameModal.hidden = false;
-        }));
-      }
+      modalItems.querySelectorAll("[data-photo-source]").forEach(button => button.addEventListener("click", () => showImagePreview(button.dataset.photoSource, button.dataset.photoName)));
+      modalItems.querySelectorAll("[data-reserve-key]").forEach(button => button.addEventListener("click", () => reserveItem(button.dataset.reserveKey, Number(button.dataset.reserveIndex))));
     }
 
     function renderListEditor() {
       if (activeListKey === "hate") {
-        const entries = rankingEntries();
-        listEditor.innerHTML = entries.map((entry, position) => `
-          <div class="ranking-editor-row" draggable="true" data-ranking-index="${entry.index}">
-            ${entry.photos[0] ? `<img src="${entry.photos[0]}" alt="">` : "<span></span>"}
-            <span>${escapeHTML(entry.name)}</span>
-            <button type="button" data-ranking-move="up" data-position="${position}">Subir</button>
-            <button type="button" data-ranking-move="down" data-position="${position}">Bajar</button>
-          </div>`).join("");
+        listEditor.innerHTML = tierBoardMarkup(true);
         listEditor.insertAdjacentHTML("beforeend", `<div class="list-editor-actions"><button type="button" class="secondary" id="saveRanking">Guardar cambios</button></div>`);
-        listEditor.querySelectorAll("[data-ranking-move]").forEach(button => button.addEventListener("click", () => {
-          const position = Number(button.dataset.position);
-          const target = button.dataset.rankingMove === "up" ? position - 1 : position + 1;
-          if (target < 0 || target >= entries.length) return;
-          [entries[position], entries[target]] = [entries[target], entries[position]];
-          currentState.ranking = entries.map(entry => entry.index);
-          renderListEditor();
-        }));
+        attachTierInteractions();
         listEditor.querySelector("#saveRanking").addEventListener("click", () => {
-          currentState.ranking = rankingEntries().map(entry => entry.index);
+          currentState.ranking = Object.values(currentState.rankingTiers).flat();
+          persistState();
+          saveSharedState();
           renderList("hate");
+          modalItems.hidden = false;
           listEditor.hidden = true;
           editListButton.hidden = !isEditable();
-          window.history.replaceState({}, "", `#edit=${encodeState(currentState)}`);
+          window.history.replaceState({}, "", `#edit=${currentState.guideId}`);
         });
         return;
       }
@@ -1035,11 +1405,7 @@
       listEditor.querySelectorAll('input[type="file"]').forEach((input, index) => input.addEventListener("change", event => {
         const files = [...event.target.files];
         if (!files.length) return;
-        Promise.all(files.map(file => new Promise(resolve => {
-          const reader = new FileReader();
-          reader.addEventListener("load", () => resolve(reader.result));
-          reader.readAsDataURL(file);
-        }))).then(results => {
+        Promise.all(files.map(compressImage)).then(results => {
           photos[index] = results;
           renderListEditor();
         });
@@ -1062,10 +1428,12 @@
       currentState[activeListKey === "not-want" ? "notWant" : activeListKey] = section.items.join("\n");
       currentState.photos[activeListKey] = (currentState.photos[activeListKey] || []).slice(0, section.items.length);
       currentState.links[activeListKey] = nextLinks;
+      persistState();
+      saveSharedState();
       renderList(activeListKey);
       listEditor.hidden = true;
       editListButton.hidden = !isEditable();
-      window.history.replaceState({}, "", `#edit=${encodeState(currentState)}`);
+      window.history.replaceState({}, "", `#edit=${currentState.guideId}`);
     }
 
     function fillEditor(state) {
@@ -1114,6 +1482,8 @@
 
     const hash = window.location.hash;
     const isViewOnly = hash.startsWith("#view=");
+    const navigationEntry = performance.getEntriesByType("navigation")[0];
+    const isPageReload = navigationEntry && navigationEntry.type === "reload";
     if (isViewOnly) {
       document.body.classList.add("view-only");
       document.querySelector("#profileEditButton").hidden = true;
@@ -1125,11 +1495,34 @@
       startEditor();
     } else if (hash.startsWith("#view=") || hash.startsWith("#edit=")) {
       const sharedState = decodeState(hash.slice(6));
-      if (sharedState) renderState(sharedState);
-      if (hash.startsWith("#edit=") && sharedState) startEditor();
+      const currentSharedState = sharedState ? latestSharedState(sharedState) : null;
+      if (currentSharedState) renderState(currentSharedState);
+      if (hash.startsWith("#edit=") && currentSharedState && !isPageReload) startEditor();
     } else {
-      renderState(defaultState);
+      renderState(loadStoredState());
     }
+
+    if (isViewOnly && !viewerName()) {
+      nameGateModal.hidden = false;
+      viewerNameInput.focus();
+    }
+
+    window.addEventListener("shared-reservations-ready", startSharedReservations);
+    window.addEventListener("shared-guides-ready", () => {
+      flushPendingSharedState();
+      loadSharedGuideFromLink();
+    });
+    startSharedReservations();
+    flushPendingSharedState();
+    loadSharedGuideFromLink();
+
+    nameGateForm.addEventListener("submit", event => {
+      event.preventDefault();
+      const name = viewerNameInput.value.trim();
+      if (!name) return;
+      localStorage.setItem("wishlist-viewer-name", name);
+      nameGateModal.hidden = true;
+    });
 
     document.querySelector("#createGuide").addEventListener("click", () => {
       if (isViewOnly) {
@@ -1170,14 +1563,17 @@
         return;
       }
       renderState({ ...currentState, ...nextProfile });
+      persistState();
+      saveSharedState();
       if (window.location.hash.startsWith("#edit=")) {
-        window.history.replaceState({}, "", `#edit=${encodeState(currentState)}`);
+        window.history.replaceState({}, "", `#edit=${currentState.guideId}`);
       }
       profileModal.hidden = true;
     });
     document.querySelector("#closeProfileModal").addEventListener("click", () => { profileModal.hidden = true; });
     document.querySelector("#cancelProfileEdit").addEventListener("click", () => { profileModal.hidden = true; });
     document.querySelector("#closeGiftNameModal").addEventListener("click", () => { giftNameModal.hidden = true; });
+    document.querySelector("#closeImagePreviewModal").addEventListener("click", () => { imagePreviewModal.hidden = true; });
     document.querySelector("#shareButton").addEventListener("click", () => {
       const links = linksFor(currentState);
       copyText(links.view).then(() => {
@@ -1199,23 +1595,18 @@
       listEditor.hidden = false;
       renderListEditor();
       editListButton.hidden = true;
-    });
-    guideModal.addEventListener("click", event => {
-      if (event.target === guideModal) guideModal.hidden = true;
-    });
-    profileModal.addEventListener("click", event => {
-      if (event.target === profileModal) profileModal.hidden = true;
-    });
-    giftNameModal.addEventListener("click", event => {
-      if (event.target === giftNameModal) giftNameModal.hidden = true;
+      if (activeListKey === "hate") modalItems.hidden = true;
     });
     editorForm.addEventListener("submit", event => {
       event.preventDefault();
       const formData = new FormData(editorForm);
       const nextState = Object.fromEntries(formData.entries());
+      nextState.guideId = currentState.guideId;
+      nextState.profilePhoto = currentState.profilePhoto;
       nextState.photos = currentState.photos;
       nextState.links = currentState.links;
       nextState.ranking = currentState.ranking;
+      nextState.rankingTiers = currentState.rankingTiers;
       nextState.date = normalizeDate(nextState.date);
       if (!nextState.date) {
         editorForm.elements.date.setCustomValidity("Escribe la fecha con 8 números, por ejemplo 05 12 2000.");
@@ -1224,7 +1615,9 @@
         return;
       }
       renderState(nextState);
-      window.history.replaceState({}, "", `#edit=${encodeState(currentState)}`);
+      persistState();
+      saveSharedState();
+      window.history.replaceState({}, "", `#edit=${currentState.guideId}`);
       openGuideModal();
     });
     document.querySelector("#exitEditor").addEventListener("click", () => {
@@ -1239,12 +1632,26 @@
       renderList(key);
       editListButton.hidden = !isEditable();
       listEditor.hidden = true;
+      modalItems.hidden = false;
       tabs.forEach(tab => tab.classList.toggle("active", tab.dataset.tab === key));
       modal.hidden = false;
       if (closeModal) closeModal.focus();
     }
 
     function hideModal() {
+      if (!listEditor.hidden) {
+        if (activeListKey === "hate") {
+          currentState.ranking = Object.values(currentState.rankingTiers).flat();
+          persistState();
+          saveSharedState();
+          renderList("hate");
+        } else {
+          saveList();
+        }
+        listEditor.hidden = true;
+        modalItems.hidden = false;
+        editListButton.hidden = !isEditable();
+      }
       modal.hidden = true;
     }
 
@@ -1252,25 +1659,19 @@
       openModal(tab.dataset.tab);
     }));
     closeModal.addEventListener("click", hideModal);
-    modal.addEventListener("click", event => {
-      if (event.target === modal) hideModal();
-    });
-    document.addEventListener("keydown", event => {
-      if (event.key === "Escape" && !modal.hidden) hideModal();
-      if (event.key === "Escape" && !guideModal.hidden) guideModal.hidden = true;
-      if (event.key === "Escape" && !profileModal.hidden) profileModal.hidden = true;
-      if (event.key === "Escape" && !giftNameModal.hidden) giftNameModal.hidden = true;
-    });
-
     document.querySelector("#photoInput").addEventListener("change", event => {
       const file = event.target.files[0];
       if (!file) return;
-      const reader = new FileReader();
-      reader.addEventListener("load", () => {
-        document.querySelector("#profileImage").src = reader.result;
+      compressImage(file).then(result => {
+        document.querySelector("#profileImage").src = result;
         document.querySelector("#photoPreview").classList.add("has-image");
-      });
-      reader.readAsDataURL(file);
+        currentState.profilePhoto = result;
+        persistState();
+        saveSharedState();
+        if (window.location.hash.startsWith("#edit=")) {
+          window.history.replaceState({}, "", `#edit=${currentState.guideId}`);
+        }
+      }).catch(error => console.error("No se pudo cargar la foto", error));
     });
 
   </script>
